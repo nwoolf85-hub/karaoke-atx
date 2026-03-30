@@ -128,19 +128,34 @@ export default function GalleryPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                id: "c5MPaP_q4Ok",
-                title: "Nubia Emmon & Amirah Tiye",
-                desc: "Michaux TV Season 2, Episode 1",
+                id: "vgOIpwW81HQ",
+                title: "Deckhand Oyster Bar",
+                desc: "Mobile Karaoke Night",
               },
               {
-                id: "yHu_NyR1AXU",
-                title: "Superfónicos",
-                desc: "Michaux TV Season 2, Episode 2",
+                id: "ykq1LVT9KOU",
+                title: "Manchaca Springs Saloon",
+                desc: "Mobile Karaoke Night",
               },
               {
-                id: "5Vz0cwvUcQA",
-                title: "Michaux & Boogaloo",
-                desc: "Michaux TV Season 1, Episode 1",
+                id: "fOufcpJjn5U",
+                title: "Lonestar Jack's Grand Opening",
+                desc: "Mobile Karaoke — Bee Cave",
+              },
+              {
+                id: "q4kHWynAWH8",
+                title: "Unity of Wimberley",
+                desc: "Private Event Karaoke",
+              },
+              {
+                id: "kMF40um7p7Y",
+                title: "Private Birthday Party",
+                desc: "Mobile Karaoke — Private Event",
+              },
+              {
+                id: "UwDlQfsaLAo",
+                title: "Private Karaoke Party Room",
+                desc: "Austin, Texas",
               },
             ].map(({ id, title, desc }) => (
               <div
@@ -168,7 +183,7 @@ export default function GalleryPage() {
 
           <div className="text-center mt-8">
             <a
-              href="https://www.youtube.com/channel/UCkgX38z3VBP1pxAkUkvr5Ig"
+              href="https://www.youtube.com/channel/UCZM7xxSm_3U4uhp9sjuZwnQ"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex px-6 py-3 rounded-full border border-white/10 text-white/60 hover:text-primary-light hover:border-primary/30 transition-all text-sm"
