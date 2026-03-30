@@ -1,26 +1,166 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: #7C3AED;
+  --color-primary-light: #A78BFA;
+  --color-primary-dark: #5B21B6;
+  --color-accent: #F59E0B;
+  --color-accent-light: #FBBF24;
+  --color-neon-pink: #EC4899;
+  --color-neon-blue: #06B6D4;
+  --color-neon-green: #10B981;
+  --color-surface: #1E1B2E;
+  --color-surface-light: #2A2640;
+  --color-surface-lighter: #37325A;
+  --font-heading: var(--font-syne);
+  --font-body: var(--font-outfit);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #0F0D1A;
+  --foreground: #F1F0F7;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Neon glow utilities */
+.neon-glow {
+  text-shadow: 0 0 7px var(--color-primary), 0 0 10px var(--color-primary),
+    0 0 21px var(--color-primary), 0 0 42px var(--color-primary-light);
+}
+
+.neon-glow-pink {
+  text-shadow: 0 0 7px var(--color-neon-pink), 0 0 10px var(--color-neon-pink),
+    0 0 21px var(--color-neon-pink);
+}
+
+.neon-glow-gold {
+  text-shadow: 0 0 7px var(--color-accent), 0 0 10px var(--color-accent),
+    0 0 21px var(--color-accent);
+}
+
+.neon-border {
+  box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary-light),
+    inset 0 0 5px rgba(124, 58, 237, 0.1);
+}
+
+.neon-border-gold {
+  box-shadow: 0 0 5px var(--color-accent), 0 0 10px var(--color-accent-light),
+    inset 0 0 5px rgba(245, 158, 11, 0.1);
+}
+
+/* Gradient backgrounds */
+.gradient-hero {
+  background: linear-gradient(
+    135deg,
+    #0F0D1A 0%,
+    #1a1035 25%,
+    #2d1b69 50%,
+    #1a1035 75%,
+    #0F0D1A 100%
+  );
+}
+
+.gradient-card {
+  background: linear-gradient(145deg, #1E1B2E 0%, #2A2640 100%);
+}
+
+/* Animated gradient border */
+.animated-border {
+  position: relative;
+  background: linear-gradient(145deg, #1E1B2E 0%, #2A2640 100%);
+  border-radius: 1rem;
+}
+
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 1rem;
+  background: linear-gradient(
+    45deg,
+    var(--color-primary),
+    var(--color-neon-pink),
+    var(--color-accent),
+    var(--color-neon-blue),
+    var(--color-primary)
+  );
+  background-size: 300% 300%;
+  animation: borderRotate 4s ease infinite;
+  z-index: -1;
+}
+
+@keyframes borderRotate {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Pulse animation for CTA */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--color-primary), 0 0 30px var(--color-primary-light);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Microphone bounce */
+@keyframes mic-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.mic-bounce {
+  animation: mic-bounce 2s ease-in-out infinite;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(124, 58, 237, 0.4);
+  color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0F0D1A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7C3AED;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A78BFA;
 }
