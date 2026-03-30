@@ -200,7 +200,7 @@ export default function AboutPage() {
                   <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-1">
                     {year}
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-white mb-2">
+                  <h3 className="font-heading text-xl font-bold text-white mb-2 leading-relaxed">
                     {title}
                   </h3>
                   <p className="text-white/50 leading-relaxed">{desc}</p>
