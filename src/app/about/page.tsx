@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -66,6 +67,27 @@ export default function AboutPage() {
       {/* Bio Section */}
       <section className="py-16 sm:py-24 bg-[#0F0D1A]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Michaux Hero Photo */}
+          <div className="relative rounded-2xl overflow-hidden mb-8">
+            <Image
+              src="/michaux-hero.jpeg"
+              alt="Michaux Clopton — Karaoke ATX"
+              width={1200}
+              height={600}
+              className="w-full h-[400px] sm:h-[500px] object-cover object-top"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D1A] via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-2">
+                Michaux Clopton
+              </h2>
+              <p className="text-accent text-sm font-medium tracking-wider uppercase">
+                Founder — Karaoke ATX
+              </p>
+            </div>
+          </div>
+
           <div className="gradient-card rounded-2xl border border-white/5 p-8 sm:p-12 lg:p-16">
             <div className="max-w-3xl mx-auto">
               <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-6">
@@ -110,6 +132,22 @@ export default function AboutPage() {
           <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white text-center mb-12">
             The Credentials
           </h2>
+
+          {/* Behind the scenes photo */}
+          <div className="relative rounded-2xl overflow-hidden mb-10">
+            <Image
+              src="/michaux-dj.jpeg"
+              alt="Michaux at the DJ station"
+              width={1200}
+              height={400}
+              className="w-full h-[280px] sm:h-[340px] object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 p-6">
+              <p className="text-white/80 text-sm font-medium">Behind the board — where the magic happens</p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {credentials.map(({ icon, label }) => (
               <div
