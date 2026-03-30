@@ -1,37 +1,41 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
+import Image from "next/image";
 
-const categories = ["All", "Bar Nights", "Private Events", "Corporate", "Private Room"] as const;
+const categories = ["All", "Live Events", "Performers", "Setup"] as const;
 
 type Category = (typeof categories)[number];
 
 interface GalleryItem {
   id: number;
+  src: string;
   category: Category;
   caption: string;
-  color: string;
 }
 
-// Placeholder gallery items — replace with real photos
 const galleryItems: GalleryItem[] = [
-  { id: 1, category: "Bar Nights", caption: "Deckhand Oyster Bar — Packed house karaoke night", color: "from-primary/30 to-neon-pink/20" },
-  { id: 2, category: "Bar Nights", caption: "Manchaca Springs Saloon — Saturday night vibes", color: "from-accent/30 to-primary/20" },
-  { id: 3, category: "Private Events", caption: "Birthday party — 30 guests singing their hearts out", color: "from-neon-blue/30 to-primary/20" },
-  { id: 4, category: "Private Events", caption: "Quinceañera celebration with full sound setup", color: "from-neon-pink/30 to-accent/20" },
-  { id: 5, category: "Corporate", caption: "Tech company holiday party — team building done right", color: "from-primary/30 to-neon-blue/20" },
-  { id: 6, category: "Corporate", caption: "Product launch after-party karaoke", color: "from-accent/30 to-neon-green/20" },
-  { id: 7, category: "Private Room", caption: "VIP room — intimate birthday celebration", color: "from-neon-pink/30 to-primary/20" },
-  { id: 8, category: "Private Room", caption: "Date night in the soundproof suite", color: "from-primary/30 to-accent/20" },
-  { id: 9, category: "Bar Nights", caption: "Lonestar Jack's BBQ — Bee Cave karaoke night", color: "from-neon-green/30 to-primary/20" },
-  { id: 10, category: "Private Events", caption: "Wedding reception — first dance then karaoke", color: "from-accent/30 to-neon-pink/20" },
-  { id: 11, category: "Bar Nights", caption: "Lago Vista lakeside venue — outdoor karaoke", color: "from-neon-blue/30 to-accent/20" },
-  { id: 12, category: "Corporate", caption: "End of year celebration — 100+ employees", color: "from-primary/30 to-accent/20" },
+  { id: 1, src: "/gallery/img-3424.jpg", category: "Live Events", caption: "Packed house karaoke night" },
+  { id: 2, src: "/gallery/img-3432.jpg", category: "Live Events", caption: "The crowd goes wild" },
+  { id: 3, src: "/gallery/img-3433.jpg", category: "Setup", caption: "Professional sound setup" },
+  { id: 4, src: "/gallery/img-3447.jpg", category: "Performers", caption: "Owning the stage" },
+  { id: 5, src: "/gallery/img-3448.jpg", category: "Performers", caption: "Giving it everything" },
+  { id: 6, src: "/gallery/img-3449.jpg", category: "Live Events", caption: "Austin energy" },
+  { id: 7, src: "/gallery/img-3452.jpg", category: "Live Events", caption: "Karaoke ATX live" },
+  { id: 8, src: "/gallery/img-3484.jpg", category: "Performers", caption: "Star of the show" },
+  { id: 9, src: "/gallery/img-3485.jpg", category: "Live Events", caption: "Friday night vibes" },
+  { id: 10, src: "/gallery/img-3486.jpg", category: "Setup", caption: "Sound check ready" },
+  { id: 11, src: "/gallery/img-3487.jpg", category: "Performers", caption: "Singing their heart out" },
+  { id: 12, src: "/gallery/img-3488.jpg", category: "Performers", caption: "The performer" },
+  { id: 13, src: "/gallery/img-3489.jpg", category: "Live Events", caption: "Duet night" },
+  { id: 14, src: "/gallery/img-3490.jpg", category: "Live Events", caption: "The whole room singing" },
+  { id: 15, src: "/gallery/img-3491.jpg", category: "Setup", caption: "Lights and sound" },
+  { id: 16, src: "/gallery/img-3492.jpg", category: "Live Events", caption: "Another unforgettable night" },
 ];
 
 export default function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState<Category>("All");
+  const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
 
   const filtered =
     activeFilter === "All"
@@ -77,41 +81,64 @@ export default function GalleryPage() {
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filtered.map(({ id, caption, color, category }) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {filtered.map((item) => (
               <div
-                key={id}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all cursor-pointer"
+                key={item.id}
+                onClick={() => setLightbox(item)}
+                className="group relative aspect-[3/4] rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all cursor-pointer"
               >
-                {/* Placeholder gradient — replace with real images */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${color} flex items-center justify-center`}
-                >
-                  <span className="text-6xl opacity-30">🎤</span>
-                </div>
+                <Image
+                  src={item.src}
+                  alt={item.caption}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
 
-                {/* Overlay */}
+                {/* Hover overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* Caption */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="text-xs text-accent font-medium mb-1">
-                    {category}
+                {/* Caption on hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="text-[10px] text-accent font-medium mb-0.5 uppercase tracking-wider">
+                    {item.category}
                   </div>
-                  <p className="text-white text-sm font-medium">{caption}</p>
+                  <p className="text-white text-xs font-medium">{item.caption}</p>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Note */}
-          <div className="text-center mt-12">
-            <p className="text-white/30 text-sm">
-              Photo gallery coming soon — follow us on Instagram for the latest.
-            </p>
-          </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            onClick={() => setLightbox(null)}
+            className="absolute top-4 right-4 text-white/60 hover:text-white text-3xl z-50"
+          >
+            &times;
+          </button>
+          <div className="relative max-w-lg w-full max-h-[85vh]" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={lightbox.src}
+              alt={lightbox.caption}
+              width={960}
+              height={2079}
+              className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+            />
+            <div className="text-center mt-3">
+              <p className="text-white text-sm font-medium">{lightbox.caption}</p>
+              <p className="text-white/40 text-xs mt-1">{lightbox.category}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
