@@ -112,6 +112,73 @@ export default function GalleryPage() {
         </div>
       </section>
 
+      {/* Videos Section */}
+      <section className="py-16 sm:py-24 bg-surface">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">
+              See Michaux in Action
+            </h2>
+            <p className="text-white/50 max-w-xl mx-auto text-lg">
+              Live music, professional sound, and the energy that makes every
+              event unforgettable.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                id: "c5MPaP_q4Ok",
+                title: "Nubia Emmon & Amirah Tiye",
+                desc: "Michaux TV Season 2, Episode 1",
+              },
+              {
+                id: "yHu_NyR1AXU",
+                title: "Superfónicos",
+                desc: "Michaux TV Season 2, Episode 2",
+              },
+              {
+                id: "5Vz0cwvUcQA",
+                title: "Michaux & Boogaloo",
+                desc: "Michaux TV Season 1, Episode 1",
+              },
+            ].map(({ id, title, desc }) => (
+              <div
+                key={id}
+                className="gradient-card rounded-2xl border border-white/5 overflow-hidden"
+              >
+                <div className="relative aspect-video">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${id}`}
+                    title={title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-heading text-sm font-bold text-white mb-1">
+                    {title}
+                  </h3>
+                  <p className="text-white/40 text-xs">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <a
+              href="https://www.youtube.com/channel/UCkgX38z3VBP1pxAkUkvr5Ig"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex px-6 py-3 rounded-full border border-white/10 text-white/60 hover:text-primary-light hover:border-primary/30 transition-all text-sm"
+            >
+              Watch More on YouTube ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Lightbox */}
       {lightbox && (
         <div
