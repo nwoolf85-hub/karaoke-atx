@@ -67,33 +67,33 @@ export default function AboutPage() {
       {/* Bio Section */}
       <section className="py-16 sm:py-24 bg-[#0F0D1A]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Michaux Hero Photo */}
-          <div className="relative rounded-2xl overflow-hidden mb-8">
-            <Image
-              src="/michaux-hero.jpeg"
-              alt="Michaux Clopton — Karaoke ATX"
-              width={1200}
-              height={600}
-              className="w-full h-[400px] sm:h-[500px] object-cover object-top"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D1A] via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-2">
-                Michaux Clopton
-              </h2>
-              <p className="text-accent text-sm font-medium tracking-wider uppercase">
-                Founder — Karaoke ATX
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            {/* Michaux Hero Photo — shown as portrait */}
+            <div className="relative rounded-2xl overflow-hidden">
+              <Image
+                src="/michaux-hero.jpeg"
+                alt="Michaux Clopton — Karaoke ATX"
+                width={1125}
+                height={2436}
+                className="w-full h-auto rounded-2xl"
+                priority
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6">
+                <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-1">
+                  Michaux Clopton
+                </h2>
+                <p className="text-accent text-sm font-medium tracking-wider uppercase">
+                  Founder — Karaoke ATX
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="gradient-card rounded-2xl border border-white/5 p-8 sm:p-12 lg:p-16">
-            <div className="max-w-3xl mx-auto">
+            {/* Bio text */}
+            <div className="gradient-card rounded-2xl border border-white/5 p-8 sm:p-10">
               <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-6">
                 Not Your Average Karaoke DJ
               </h2>
-              <div className="space-y-5 text-white/60 text-lg leading-relaxed">
+              <div className="space-y-5 text-white/60 text-base leading-relaxed">
                 <p>
                   Most karaoke setups are a laptop, a cheap speaker, and a prayer.
                   Michaux Clopton is different — and you&apos;ll hear it from
@@ -133,22 +133,38 @@ export default function AboutPage() {
             The Credentials
           </h2>
 
-          {/* Behind the scenes photo */}
-          <div className="relative rounded-2xl overflow-hidden mb-10">
-            <Image
-              src="/michaux-dj.jpeg"
-              alt="Michaux at the DJ station"
-              width={1200}
-              height={400}
-              className="w-full h-[280px] sm:h-[340px] object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 p-6">
-              <p className="text-white/80 text-sm font-medium">Behind the board — where the magic happens</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            {/* DJ station photo — portrait format */}
+            <div className="relative rounded-2xl overflow-hidden">
+              <Image
+                src="/michaux-dj.jpeg"
+                alt="Michaux at the DJ station"
+                width={980}
+                height={1272}
+                className="w-full h-auto rounded-2xl"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-5">
+                <p className="text-white/80 text-sm font-medium">Behind the board — where the magic happens</p>
+              </div>
+            </div>
+
+            {/* Credentials grid next to photo */}
+            <div className="grid grid-cols-2 gap-4 content-start">
+              {credentials.map(({ icon, label }) => (
+                <div
+                  key={label}
+                  className="gradient-card rounded-xl p-6 border border-white/5 text-center"
+                >
+                  <span className="text-3xl block mb-3">{icon}</span>
+                  <span className="text-sm text-white/70 font-medium">
+                    {label}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 hidden">
             {credentials.map(({ icon, label }) => (
               <div
                 key={label}
