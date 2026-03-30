@@ -65,17 +65,16 @@ export default function AboutPage() {
       </section>
 
       {/* Bio Section */}
-      <section className="py-16 sm:py-24 bg-[#0F0D1A]">
+      <section className="py-10 sm:py-16 bg-[#0F0D1A]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {/* Michaux Hero Photo — shown as portrait */}
-            <div className="relative rounded-2xl overflow-hidden">
+            {/* Michaux Hero Photo — cropped to show face and body */}
+            <div className="relative rounded-2xl overflow-hidden aspect-[3/4]">
               <Image
                 src="/michaux-hero.jpeg"
                 alt="Michaux Clopton — Karaoke ATX"
-                width={1125}
-                height={2436}
-                className="w-full h-auto rounded-2xl"
+                fill
+                className="object-cover object-[center_25%] rounded-2xl"
                 priority
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6">
